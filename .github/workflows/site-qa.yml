@@ -1,0 +1,38 @@
+name: Site v2 QA
+on:
+  push:
+    branches: [main, feat/site-v2]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: site-qa-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  browser-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned browser test dependency
+        run: npm install --no-save --no-package-lock playwright@1.56.1
+      - name: Install Chromium and runtime dependencies
+        run: npx playwright install --with-deps chromium
+      - name: Run site smoke tests (external form submission mocked)
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 &
+          SERVER_PID=$!
+          trap "kill $SERVER_PID || true" EXIT
+          sleep 2
+          node tests/site-smoke.mjs
+      - name: Attach QA screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-v2-qa-screenshots
+          path: artifacts/qa/
+          if-no-files-found: ignore
