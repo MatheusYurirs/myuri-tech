@@ -26,6 +26,8 @@
   }
   document.documentElement.dataset.theme = theme;
   document.documentElement.style.colorScheme = theme;
+  var themeMeta = document.querySelector('meta[name="theme-color"]');
+  if (themeMeta) themeMeta.setAttribute('content', theme === 'dark' ? '#0C1017' : '#F8FAFC');
 })();
 </script>
 <style>:root {--canvas:#f8fafc;--white:#fff;--ink:#0f172a;--soft-ink:#475569;--muted:#64748b;--line:#e2e8f0;--accent:#0b58ff;--accent-hover:#0945ca;--tint:#eff5ff;--dark:#0b1c2a;--dark-text:#eef5ff;--brand-blue:#0B58FF;--brand-teal:#10B981;--brand-navy:#0F172A;--max:1160px}
@@ -201,6 +203,16 @@ html{scrollbar-gutter:stable}
 @media(max-width:960px){.logo img{height:42px;max-width:210px}}
 @media(max-width:580px){.logo img{height:38px;max-width:180px}}
 
+
+/* Correção de cascata: prevalece sobre o cabeçalho claro declarado na v2. */
+:root[data-theme="dark"] .site-header{background:rgba(12,16,23,.96)}
+:root[data-theme="dark"] .nav-mobile{background:#161d27;box-shadow:0 16px 30px rgba(0,0,0,.4)}
+:root[data-theme="dark"] .form-feedback:not([data-state="success"]):not([data-state="error"]){background:#1b2c3b;border-color:#49677d;color:#f5f7fa}
+:root[data-theme="dark"] .form-feedback:not([data-state="success"]):not([data-state="error"]) p{color:#d8e4f0}
+:root[data-theme="dark"] .form-feedback[data-state="success"],:root[data-theme="dark"] .form-feedback[data-state="error"]{color:#0f172a}
+:root[data-theme="dark"] .form-validation-note{background:#382322;color:#ffccc6;border-color:#ff8b80}
+:root[data-theme="dark"] .contact-email-link{color:#8de8d3}
+
 /* Escuro v2: grafite como base, azul vivo nas ações e turquesa como assinatura. */
 [data-theme="dark"] .hero h1 em,[data-theme="dark"] .projects h2 em{color:#5be0c1}
 [data-theme="dark"] .button-primary,[data-theme="dark"] .button-dark{background:#1260ef;color:#fff;border-color:#1260ef}
@@ -321,6 +333,8 @@ html{scrollbar-gutter:stable}
     const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
     document.documentElement.dataset.theme = next;
     document.documentElement.style.colorScheme = next;
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+    if (themeMeta) themeMeta.setAttribute('content', next === 'dark' ? '#0C1017' : '#F8FAFC');
     try { localStorage.setItem('myuri-theme',next); } catch(e) {}
     renderTheme();
   });
