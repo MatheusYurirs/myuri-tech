@@ -141,11 +141,13 @@ h1,h2,h3,p{margin:0}h1,h2,h3{font-weight:590;letter-spacing:-.052em;line-height:
 .site-header{background:rgba(248,250,252,.96)}
 .header-inner{gap:clamp(10px,2vw,28px)}
 .nav-desktop a{transition:color .18s ease}.nav-desktop a:hover{color:var(--accent)}
-.header-cta{border-color:var(--accent);background:var(--accent);color:#fff;font-weight:730}.header-cta:hover{background:var(--accent-hover);border-color:var(--accent-hover);color:#fff}
+.header-cta{border-color:var(--ink);background:transparent;color:var(--ink);font-weight:680}.header-cta:hover{background:var(--ink);border-color:var(--ink);color:#fff}
 .hero{position:relative;overflow:hidden;isolation:isolate}
 .hero::before{content:"";position:absolute;inset:0 0 auto auto;width:min(54vw,780px);height:100%;pointer-events:none;z-index:-1;background:radial-gradient(ellipse at 85% 30%,rgba(11,88,255,.085),transparent 65%)}
-.hero h1{max-width:1050px}.hero h1 em{font-style:normal;font-family:inherit;font-weight:620;letter-spacing:inherit}
-.hero-bottom>p{max-width:535px}.hero-footnote{border-top:0}
+/* A assinatura editorial do original permanece: sans forte + serif itálica. */
+.hero h1{max-width:1080px}
+.hero h1 em{font-family:Georgia,"Times New Roman",serif;font-style:italic;font-weight:400;letter-spacing:-.06em;color:var(--accent)}
+.hero-bottom>p{max-width:570px}
 .eyebrow .dot{background:var(--brand-teal);box-shadow:0 0 0 4px rgba(16,185,129,.12)}
 .section-kicker{letter-spacing:.155em}
 .projects{padding:120px 0 130px;background:var(--canvas)}
@@ -175,8 +177,8 @@ h1,h2,h3,p{margin:0}h1,h2,h3{font-weight:590;letter-spacing:-.052em;line-height:
 .project-art-corner{position:absolute;bottom:22px;right:24px;color:#a0b9cf}
 [data-theme="dark"] .projects{background:var(--canvas)}
 [data-theme="dark"] .project-feature{background:var(--white)}
-[data-theme="dark"] .header-cta{color:#fff;background:#2767cf;border-color:#2767cf}
-[data-theme="dark"] .header-cta:hover{color:#fff;background:#3b7be2}
+[data-theme="dark"] .header-cta{color:var(--ink);background:transparent;border-color:var(--ink)}
+[data-theme="dark"] .header-cta:hover{color:#0d1728;background:var(--ink)}
 [data-theme="dark"] .hero::before{background:radial-gradient(ellipse at 85% 30%,rgba(78,145,255,.13),transparent 65%)}
 @media(max-width:980px){.project-feature{grid-template-columns:1fr 1fr}.nav-desktop{gap:15px}.projects{padding:90px 0}}
 @media(max-width:760px){.project-feature{grid-template-columns:1fr}.project-art{min-height:310px}.project-feature-copy{min-height:380px}.project-foot{align-items:start}.hero::before{width:100%}}
