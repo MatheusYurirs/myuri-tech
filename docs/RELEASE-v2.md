@@ -17,6 +17,17 @@ Evoluir a landing page estática sem perder a identidade original: composição 
 - Não houve alteração da `main` nem publicação automática durante a preparação.
 - Não há mudanças de backend, armazenamento de dados ou autenticação.
 
+## Evidência CI em 23/10/2026
+
+- Execução inicial em PR #1: [Site v2 QA / browser-smoke #39965493072](https://github.com/MatheusYurirs/myuri-tech/actions/runs/39965493072).
+- **Resultado observado: success** (job `browser-smoke` e execução dos testes).
+- Logs confirmaram `QA PASSED`, verificação de SEO, idioma, privacidade, IDs únicos, âncoras e atributos `alt`.
+- Smoke em Chromium inclui troca de tema e persistência, cabeçalho estável, ausência de overflow horizontal, menu mobile, formulário com resposta simulada e HTTP 200 para `privacidade.html`.
+- Artefato `site-v2-qa-screenshots`: 3 capturas (1440×900, 390×844, 320×720), disponível na execução do GitHub Actions.
+- A execução acima valida o commit daquele run. Alterações documentais posteriores exigem nova confirmação do HEAD do PR.
+- **O fluxo real de entrega de e-mails pelo Formspree não foi exercitado**; permanece teste manual pré-merge.
+- A revisão visual em telas desktop/mobile foi relatada como aprovada pelo proprietário; não é auditoria automatizada WCAG completa.
+
 ## Checklist antes do merge
 - [ ] Workflow **Site v2 QA / browser-smoke** verde no HEAD do PR.
 - [ ] Inspecionar capturas dos tamanhos 1440×900, 390×844 e 320×720.
